@@ -7,7 +7,11 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
-{
+{ 
+    public function __construct() {
+        $this->token_key = env('TOKEN_KEY');
+    }
+
     public function register(Request $request) {
         $fields = $request->validate([
             'name' => 'required|string',
@@ -21,7 +25,7 @@ class AuthController extends Controller
             'password' => bcrypt($fields['password'])
         ]);
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $token = $user->createToken($this->token_key)->plainTextToken;
 
         $response = [
             'user' => $user,
@@ -33,21 +37,20 @@ class AuthController extends Controller
 
     public function login(Request $request) {
         $fields = $request->validate([
-            'email' => 'required|string',
+            'email' => 'required|email|string',
             'password' => 'required|string'
         ]);
 
-        // Check email
         $user = User::where('email', $fields['email'])->first();
+        $user->tokens()->delete();
 
-        // Check password
         if(!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
                 'message' => 'Invalid Email or Password'
             ], 401);
         }
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $token = $user->createToken(env('TOKEN_KEY'))->plainTextToken;
 
         $response = [
             'user' => $user,
@@ -80,5 +83,18 @@ class AuthController extends Controller
       }
 
       return response($response, $responseCode);
+    }
+
+    public function refresh(Request $request)
+    {
+        $user = $request->user();
+        $user->tokens()->delete();
+        $token = $user->createToken($this->token_key)->plainTextToken;
+
+        $response = [
+            'token' => $token
+        ];
+
+        return response($response, 201);
     }
 }

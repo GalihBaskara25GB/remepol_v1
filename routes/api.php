@@ -32,9 +32,11 @@ Route::get('/check', [AuthController::class, 'check']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/user', [UserController::class, 'index']);
-    Route::get('/kriteria', [KriteriaController::class, 'index']);
-    Route::get('/matakuliah', [KriteriaController::class, 'index']);
-    Route::get('/matakuliah', [MatakuliahController::class, 'index']);
+    Route::get('/refresh', [AuthController::class, 'refresh']);
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::resource('user', UserController::class);
+    Route::resource('kriteria', KriteriaController::class);
+    Route::resource('alternatif', AlternatifController::class);
+    Route::resource('matakuliah', MatakuliahController::class);
 });
