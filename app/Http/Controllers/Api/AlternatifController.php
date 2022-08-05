@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Alternatif;
+use App\Models\Kriteria;
+use App\Models\Evaluation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AlternatifResource;
@@ -54,16 +56,25 @@ class AlternatifController extends Controller
         
         $validator = $request->validate([
             'nama' => 'required|string',
-            'keterangan' => 'required|string'
+            'keterangan' => 'required|string',
+            'matakuliah_id' => 'required',
         ]);
 
-        if($validator->fails()){
-            return response([
-                'message' => array($validator->errors())
-            ], 400);       
-        }
-
         $alternatif = Alternatif::create($input);
+
+        //also auto insert for evalutaions
+        $evaluations = array();
+        $toInsertEvaluation = array();
+        foreach (Kriteria::all() as $key) {
+            $evaluations['alternatif_id'] = $alternatif->id;
+            $evaluations['kriteria_id'] = $key->id;
+            $evaluations['value'] = '0';
+            $evaluations['created_at'] = date('Y-m-d H:i:s');
+            $evaluations['updated_at'] = date('Y-m-d H:i:s');
+
+            array_push($toInsertEvaluation, $evaluations);
+        }
+        Evaluation::insert($toInsertEvaluation);
 
         $response = [
             'data' => new AlternatifResource($alternatif),
@@ -107,17 +118,13 @@ class AlternatifController extends Controller
    
         $validator = $request->validate([
             'nama' => 'required|string',
-            'keterangan' => 'required|string'
+            'keterangan' => 'required|string',
+            'matakuliah_id' => 'required',
         ]);
-
-        if($validator->fails()){
-            return response([
-                'message' => array($validator->errors())
-            ], 400);       
-        }
 
         $alternatif->nama = $input['nama'];
         $alternatif->keterangan = $input['keterangan'];
+        $alternatif->matakuliah_id = $input['matakuliah_id'];
         $alternatif->save();
 
         $response = [

@@ -57,14 +57,9 @@ class UserController extends Controller
         $validator = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|unique:users,email',
-            'password' => 'required|string|confirmed'
+            'password' => 'required|string|confirmed',
+            'role' => 'required|string'
         ]);
-
-        if($validator->fails()){
-            return response([
-                'message' => array($validator->errors())
-            ], 400);       
-        }
 
         $user = User::create($input);
 
@@ -107,19 +102,26 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $input = $request->all();
-   
-        $validator = $request->validate([
-            'name' => 'required|string',
-            'password' => 'string|confirmed'
-        ]);
-
-        if($validator->fails()){
-            return response([
-                'message' => array($validator->errors())
-            ], 400);       
+        
+        if(!empty($input['password'])) {
+            $validator = $request->validate([
+                'name' => 'required|string',
+                'role' => 'required|string',
+                'email' => 'required|string|unique:users,email,'.$user->id,
+                'password' => 'required|string|confirmed',
+            ]);
+        
+        } else {
+            $validator = $request->validate([
+                'name' => 'required|string',
+                'role' => 'required|string',
+                'email' => 'required|string|unique:users,email,'.$user->id,
+            ]);
         }
 
         $user->name = $input['name'];
+        $user->email = $input['email'];
+        $user->role = $input['role'];
         if(!empty($input['password']))
             $user->password = bcrypt($input['password']);
         $user->save();

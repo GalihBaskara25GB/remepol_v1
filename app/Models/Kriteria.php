@@ -20,4 +20,9 @@ class Kriteria extends Model
         'bobot',
         'keterangan'
     ];
+
+    public function evaluations()
+    {
+        return $this->hasMany('App\Models\Evaluation');
+    }
 }

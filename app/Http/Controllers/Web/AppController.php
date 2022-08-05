@@ -25,6 +25,15 @@ class AppController extends Controller
                 'htmlUtilityDir' => 'utility.html',
                 'scriptUtilityDir' => 'utility.script',
                 'currentPage' => null,
+            ),
+            'user' => array(
+                'pageHeader' => 'userHeader',
+                'pageFooter' => 'userFooter',
+                'htmlDir' => 'web.user.html',
+                'scriptDir' => 'web.user.script',
+                'htmlUtilityDir' => 'utility.html',
+                'scriptUtilityDir' => 'utility.script',
+                'currentPage' => null,
             )
         );
 
@@ -34,7 +43,10 @@ class AppController extends Controller
             'matakuliah' => route('web.matakuliah'),
             'kriteria' => route('web.kriteria'),
             'alternatif' => route('web.alternatif'),
+            'evaluation' => route('web.evaluation'),
             'login' => route('web.login'),
+            'userMatakuliah' => route('web.user.matakuliah'),
+            'userDashboard' => route('web.user.dashboard'),
         );
     }
 
@@ -60,8 +72,20 @@ class AppController extends Controller
         return $this->renderView('alternatif', 'admin');
     }
 
+    public function evaluation() {
+        return $this->renderView('evaluation', 'admin');
+    }
+
     public function login() {
         return $this->renderView('login', 'public');
+    }
+
+    public function userMatakuliah() {
+        return $this->renderView('userMatakuliah', 'user');
+    }
+
+    public function userDashboard() {
+        return $this->renderView('userDashboard', 'user');
     }
 
     private function renderView($mainContent, $pageType) {

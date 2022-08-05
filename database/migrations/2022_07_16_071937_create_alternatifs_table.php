@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->text('keterangan');
+            $table->foreignId('matakuliah_id')->constrained('matakuliahs');
             $table->timestamps();
         });
     }

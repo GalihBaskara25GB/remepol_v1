@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\KriteriaController;
 use App\Http\Controllers\Api\AlternatifController;
 use App\Http\Controllers\Api\MatakuliahController;
+use App\Http\Controllers\Api\EvaluationController;
+use App\Http\Controllers\Api\ApiUtilityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +35,12 @@ Route::get('/check', [AuthController::class, 'check']);
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/utility/count', [ApiUtilityController::class, 'count']);
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::resource('user', UserController::class);
-    Route::resource('kriteria', KriteriaController::class);
+    Route::resource('kriteria', KriteriaController::class)->parameters(['kriteria' => 'kriteria']);
     Route::resource('alternatif', AlternatifController::class);
     Route::resource('matakuliah', MatakuliahController::class);
+    Route::resource('evaluation', EvaluationController::class);
 });

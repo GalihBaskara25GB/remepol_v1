@@ -60,12 +60,6 @@ class KriteriaController extends Controller
             'keterangan' => 'required|string'
         ]);
 
-        if($validator->fails()){
-            return response([
-                'message' => array($validator->errors())
-            ], 400);       
-        }
-
         $kriteria = Kriteria::create($input);
 
         $response = [
@@ -114,13 +108,7 @@ class KriteriaController extends Controller
             'bobot' => 'required|numeric|between:0,100',
             'keterangan' => 'required|string'
         ]);
-
-        if($validator->fails()){
-            return response([
-                'message' => array($validator->errors())
-            ], 400);       
-        }
-
+        
         $kriteria->nama = $input['nama'];
         $kriteria->atribut = $input['atribut'];
         $kriteria->bobot = $input['bobot'];

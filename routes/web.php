@@ -23,3 +23,6 @@ Route::get('/user', [AppController::class, 'user'])->name('web.user');
 Route::get('/matakuliah', [AppController::class, 'matakuliah'])->name('web.matakuliah');
 Route::get('/kriteria', [AppController::class, 'kriteria'])->name('web.kriteria');
 Route::get('/alternatif', [AppController::class, 'alternatif'])->name('web.alternatif');
+Route::get('/evaluation', [AppController::class, 'evaluation'])->name('web.evaluation');
+Route::get('/user/matakuliah', [AppController::class, 'userMatakuliah'])->name('web.user.matakuliah');
+Route::get('/user/dashboard', [AppController::class, 'userDashboard'])->name('web.user.dashboard');

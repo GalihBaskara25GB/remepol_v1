@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Matakuliah extends Model
+class Evaluation extends Model
 {
     use HasFactory;
 
@@ -15,14 +15,18 @@ class Matakuliah extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'nama',
-        'semester',
-        'dosen',
-        'keterangan'
+        'alternatif_id',
+        'kriteria_id',
+        'value',
     ];
 
-    public function alternatifs()
+    public function alternatif()
     {
-        return $this->hasMany('App\Models\Alternatif');
+        return $this->belongsTo('App\Models\Alternatif');
+    }
+
+    public function kriteria()
+    {
+        return $this->belongsTo('App\Models\Kriteria');
     }
 }

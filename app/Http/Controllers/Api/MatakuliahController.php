@@ -60,12 +60,6 @@ class MatakuliahController extends Controller
             'keterangan' => 'required|string'
         ]);
 
-        if($validator->fails()){
-            return response([
-                'message' => array($validator->errors())
-            ], 400);       
-        }
-
         $matakuliah = Matakuliah::create($input);
 
         $response = [
@@ -114,12 +108,6 @@ class MatakuliahController extends Controller
             'semester' => 'required|numeric',
             'keterangan' => 'required|string'
         ]);
-
-        if($validator->fails()){
-            return response([
-                'message' => array($validator->errors())
-            ], 400);       
-        }
 
         $matakuliah->nama = $input['nama'];
         $matakuliah->dosen = $input['dosen'];
