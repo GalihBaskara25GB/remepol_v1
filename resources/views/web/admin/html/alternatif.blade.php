@@ -64,7 +64,7 @@
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Mata Kuliah</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Mata Pelajaran</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Keterangan</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Opsi</th>
                 </tr>
@@ -123,8 +123,8 @@
               <div class="row mx-0">
                 <div class="col-md-12 col-sm-12">
                   <div class="form-group">
-                    <label for="matakuliah_id" class="form-control-label">Mata Kuliah</label>
-                    <select class="form-control" id="matakuliah_id" name="matakuliah_id" required>
+                    <label for="matapelajaran_id" class="form-control-label">Mata Pelajaran</label>
+                    <select class="form-control" id="matapelajaran_id" name="matapelajaran_id" required>
                       <option value="">Choose Option</option>
                     </select>
                   </div>

@@ -1,25 +1,25 @@
 //check if token is valid before continue action 
 isTokenValid();
-let apiUrlMatakuliah = `${apiUrl}matakuliah`;
+let apiUrlMatapelajaran = `${apiUrl}matapelajaran`;
 
-let matakuliahForm = $(`#matakuliahForm`);
+let matapelajaranForm = $(`#matapelajaranForm`);
 let formTitle = $(`#cardFormTitle`);
 let containerForm = $(`#formContainer`);
 let containerTable = $(`#tableContainer`);
 let isUpdate = false;
 let updateId = undefined;
 
-let nextPageUrl = apiUrlMatakuliah;
-let prevPageUrl = apiUrlMatakuliah;
-let firstPageUrl = apiUrlMatakuliah;
-let lastPageUrl = apiUrlMatakuliah;
+let nextPageUrl = apiUrlMatapelajaran;
+let prevPageUrl = apiUrlMatapelajaran;
+let firstPageUrl = apiUrlMatapelajaran;
+let lastPageUrl = apiUrlMatapelajaran;
 
-const initMatakuliah = (url) => {
+const initMatapelajaran = (url) => {
   showLoader();
   hideForm(true);
   showTable();
 
-  let failedRedirectUrl = `${webUrl}matakuliah`;
+  let failedRedirectUrl = `${webUrl}matapelajaran`;
 
   if(!userData) {
     removeLocalStorage(localStorageAuthKey);
@@ -36,10 +36,10 @@ const initMatakuliah = (url) => {
     contentType: "application/json",
     success: function(res){ 
       if(res.data) {
-        $(`#tbodyMatakuliah`).html('');
+        $(`#tbodyMatapelajaran`).html('');
         
         $.each(res.data, function (index, value) {
-          $(`#tbodyMatakuliah`).append(`
+          $(`#tbodyMatapelajaran`).append(`
             <tr>
               <td>
                 <div class="d-flex px-2 py-1">
@@ -52,7 +52,7 @@ const initMatakuliah = (url) => {
                 ${value.semester}
               </td>
               <td class="text-sm">
-                ${value.dosen}
+                ${value.guru}
               </td>
               <td class="text-sm">
                 ${value.keterangan}
@@ -136,7 +136,7 @@ $(document).on('click', '.btnDelete', function (e) {
 
   $.ajax({
     type: "DELETE",  
-    url: `${apiUrlMatakuliah}/${id}`,
+    url: `${apiUrlMatapelajaran}/${id}`,
     beforeSend: function (xhr) {
       xhr.setRequestHeader('Authorization', `Bearer ${userData.token}`);
     },
@@ -148,7 +148,7 @@ $(document).on('click', '.btnDelete', function (e) {
       if(!res.message) 
         return showErrorModal('Something went wrong, please contact Administrator'); 
       
-      return showSuccessModal(res.message, initMatakuliah, apiUrlMatakuliah);
+      return showSuccessModal(res.message, initMatapelajaran, apiUrlMatapelajaran);
 
     },
     error: function(err) { 
@@ -176,7 +176,7 @@ $(document).on('click', '.btnUpdate', function (e) {
 
   $.ajax({
     type: "GET",  
-    url: `${apiUrlMatakuliah}/${updateId}`,
+    url: `${apiUrlMatapelajaran}/${updateId}`,
     beforeSend: function (xhr) {
       xhr.setRequestHeader('Authorization', `Bearer ${userData.token}`);
     },
@@ -211,21 +211,21 @@ $(document).on('click', '.btnUpdate', function (e) {
 //Form & Table Behaviour
 const hideForm = (reset = false) => {
   isUpdate = false;
-  formTitle.html('Add Mata Kuliah');
+  formTitle.html('Add Mata Pelajaran');
   updateId = undefined;
   containerForm.hide();
   resetForm(reset);
 };
 
 const showForm = (reset = false) => {
-  if(isUpdate == true) formTitle.html('Edit Mata Kuliah');
+  if(isUpdate == true) formTitle.html('Edit Mata Pelajaran');
   containerForm.show();
   resetForm(reset);
 };
 
 const resetForm = (reset = true) => {
   if(reset == true) {
-    matakuliahForm[0].reset();
+    matapelajaranForm[0].reset();
   }
 };
 
@@ -238,31 +238,31 @@ const showTable = () => {
 };
 
 
-initMatakuliah(apiUrlMatakuliah);
+initMatapelajaran(apiUrlMatapelajaran);
 
 //Pagination init
 $('#paginationPrev').on('click', function(e) {
   e.preventDefault();
 
-  initMatakuliah(prevPageUrl);
+  initMatapelajaran(prevPageUrl);
 });
 
 $('#paginationNext').on('click', function(e) {
   e.preventDefault();
 
-  initMatakuliah(nextPageUrl);
+  initMatapelajaran(nextPageUrl);
 });
 
 $('#paginationFirst').on('click', function(e) {
   e.preventDefault();
 
-  initMatakuliah(firstPageUrl);
+  initMatapelajaran(firstPageUrl);
 });
 
 $('#paginationLast').on('click', function(e) {
   e.preventDefault();
 
-  initMatakuliah(lastPageUrl);
+  initMatapelajaran(lastPageUrl);
 });
 
 
@@ -276,21 +276,21 @@ $('#btnAddData').on('click', function(e) {
 
 const fillForm = (data) => {
   $('#nama').val(data.nama);
-  $('#dosen').val(data.dosen);
+  $('#guru').val(data.guru);
   $('#semester').val(data.semester).trigger('change');
   $('#keterangan').val(data.keterangan);
 };
 
-matakuliahForm.on('submit', function(e) {
+matapelajaranForm.on('submit', function(e) {
   e.preventDefault();
   showLoader();
 
-  let formData = JSON.stringify(matakuliahForm.serializeObject());
+  let formData = JSON.stringify(matapelajaranForm.serializeObject());
 
   if(isUpdate == false) {
     $.ajax({
       type: "POST",  
-      url: apiUrlMatakuliah,
+      url: apiUrlMatapelajaran,
       beforeSend: function (xhr) {
         xhr.setRequestHeader('Authorization', `Bearer ${userData.token}`);
       },
@@ -303,7 +303,7 @@ matakuliahForm.on('submit', function(e) {
         if(!res.data) 
           return showErrorModal('Something went wrong, please contact Administrator'); 
         
-        return showSuccessModal(`Data saved successfully`, initMatakuliah, apiUrlMatakuliah);
+        return showSuccessModal(`Data saved successfully`, initMatapelajaran, apiUrlMatapelajaran);
 
       },
       error: function(err) { 
@@ -323,7 +323,7 @@ matakuliahForm.on('submit', function(e) {
   } else {
     $.ajax({
       type: "PUT",  
-      url: `${apiUrlMatakuliah}/${updateId}`,
+      url: `${apiUrlMatapelajaran}/${updateId}`,
       beforeSend: function (xhr) {
         xhr.setRequestHeader('Authorization', `Bearer ${userData.token}`);
       },
@@ -337,7 +337,7 @@ matakuliahForm.on('submit', function(e) {
         if(!res.data) 
           return showErrorModal('Something went wrong, please contact Administrator'); 
         
-        return showSuccessModal(`Data saved successfully`, initMatakuliah, apiUrlMatakuliah);
+        return showSuccessModal(`Data saved successfully`, initMatapelajaran, apiUrlMatapelajaran);
 
       },
       error: function(err) { 

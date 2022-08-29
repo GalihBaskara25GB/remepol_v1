@@ -1,11 +1,11 @@
 //check if token is valid before continue action 
 isTokenValid();
 let apiUrlEvaluation = `${apiUrl}evaluation`;
-let apiUrlMatakuliah = `${apiUrl}matakuliah`;
+let apiUrlMatapelajaran = `${apiUrl}matapelajaran`;
 let currentApiUrlEvaluation = apiUrlEvaluation;
 
 let evaluationForm = $(`#evaluationForm`);
-let selectMatakuliah = $(`#matakuliah_id`);
+let selectMatapelajaran = $(`#matapelajaran_id`);
 let resultContainer = $('#resultContainer');
 let tableContainer = $('#tableContainer');
 
@@ -120,23 +120,23 @@ const initEvaluation = (url) => {
   });
 };
 
-const initSelectMatakuliah = () => {
+const initSelectMatapelajaran = () => {
 
   $.ajax({
     type: "GET",  
-    url: apiUrlMatakuliah,
+    url: apiUrlMatapelajaran,
     beforeSend: function (xhr) {
       xhr.setRequestHeader('Authorization', `Bearer ${userData.token}`);
     },
     contentType: "application/json",
     success: function(res){ 
       if(res.data) {
-        selectMatakuliah.html(`
+        selectMatapelajaran.html(`
          <option value="">Choose Option</option>
         `);
         
         $.each(res.data, function (index, value) {
-          selectMatakuliah.append(`
+          selectMatapelajaran.append(`
             <option value="${value.id}" class="text-capitalize">${value.nama}</option>
           `);
         });
@@ -151,10 +151,10 @@ const initSelectMatakuliah = () => {
   });
 }
 
-//reload data based on matakuliah
-$(document).on('change', '#matakuliah_id', function (e) {
+//reload data based on matapelajaran
+$(document).on('change', '#matapelajaran_id', function (e) {
   e.preventDefault();
-  let apiUrlReloadEvaluation = `${apiUrlEvaluation}?filterBy=matakuliah_id&filterValue=${selectMatakuliah.val()}`;
+  let apiUrlReloadEvaluation = `${apiUrlEvaluation}?filterBy=matapelajaran_id&filterValue=${selectMatapelajaran.val()}`;
   initEvaluation(apiUrlReloadEvaluation);
 });
 
@@ -169,7 +169,7 @@ $(document).on('click', '.btnCloseResult', function (e) {
 });
 
 initEvaluation(apiUrlEvaluation);
-initSelectMatakuliah();
+initSelectMatapelajaran();
 
 resultContainer.hide();
 tableContainer.show();
@@ -233,7 +233,7 @@ const closeResult = () => {
 const showResult = () => {
   tableContainer.hide();
   resultContainer.show();
-  $('#cardResultTitle').html(`SAW Result of Mata Kuliah ${selectMatakuliah.children("option").filter(":selected").text()}`);
+  $('#cardResultTitle').html(`SAW Result of Mata Pelajaran ${selectMatapelajaran.children("option").filter(":selected").text()}`);
   showLoader();
 
   let failedRedirectUrl = `${webUrl}evaluation`;
@@ -246,7 +246,7 @@ const showResult = () => {
   
   $.ajax({
     type: "GET",  
-    url: `${apiUrlEvaluation}/${selectMatakuliah.val()}`,
+    url: `${apiUrlEvaluation}/${selectMatapelajaran.val()}`,
     beforeSend: function (xhr) {
       xhr.setRequestHeader('Authorization', `Bearer ${userData.token}`);
     },

@@ -17,8 +17,8 @@ class AlternatifResource extends JsonResource
         return [
             'id' => $this->id,
             'nama' => $this->nama,
-            'matakuliah_nama' => $this->matakuliah->nama,
-            'matakuliah_id' => $this->matakuliah->id,
+            'matapelajaran_nama' => $this->matapelajaran->nama,
+            'matapelajaran_id' => $this->matapelajaran->id,
             'keterangan' => $this->keterangan,
             'created_at' => $this->created_at->format('Y-m-d h:i'),
             'updated_at' => $this->updated_at->format('Y-m-d h:i'),

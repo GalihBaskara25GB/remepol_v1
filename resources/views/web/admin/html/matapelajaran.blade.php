@@ -7,7 +7,7 @@
         <div class="card-header pb-0">
           <div class="row">
             <div class="col-lg-6 col-sm-12 col-md-7">
-              <h6>Mata Kuliah</h6>
+              <h6>Mata Pelajaran</h6>
               <p class="text-sm mb-0 d-none d-md-block">
                 <i class="fa fa-check text-info" aria-hidden="true"></i>
                 <span class="font-weight-bold ms-1">Showing</span> data stored in database
@@ -65,12 +65,12 @@
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Semester</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Dosen</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Guru</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Keterangan</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Opsi</th>
                 </tr>
               </thead>
-              <tbody  id="tbodyMatakuliah">
+              <tbody  id="tbodyMatapelajaran">
               </tbody>
             </table>
           </div>
@@ -87,7 +87,7 @@
         <div class="card-header pb-0">
           <div class="row">
             <div class="col-lg-6 col-sm-12 col-md-7">
-              <h6 id="cardFormTitle">Add Mata Kuliah</h6>
+              <h6 id="cardFormTitle">Add Mata Pelajaran</h6>
               <p class="text-sm mb-0 d-none d-md-block">
                 <i class="fa fa-check text-info" aria-hidden="true"></i>
                 <span class="font-weight-bold ms-1">Fill</span> data below
@@ -106,12 +106,12 @@
         </div>
         <div class="card-body pb-2">
           <div class="table-responsive">
-            <form id="matakuliahForm">
+            <form id="matapelajaranForm">
               <div class="row mx-0">
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
                     <label for="nama" class="form-control-label">Nama</label>
-                    <input class="form-control" type="text" value="" id="nama" name="nama" placeholder="Nama Mata Kuliah" required />
+                    <input class="form-control" type="text" value="" id="nama" name="nama" placeholder="Nama Mata Pelajaran" required />
                   </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
@@ -128,8 +128,8 @@
               <div class="row mx-0">
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
-                    <label for="dosen" class="form-control-label">Dosen</label>
-                    <input class="form-control" type="text" value="" id="dosen" name="dosen" placeholder="Nama Dosen" required />
+                    <label for="guru" class="form-control-label">Guru</label>
+                    <input class="form-control" type="text" value="" id="guru" name="guru" placeholder="Nama Guru" required />
                   </div>
                 </div>
                 <div class="col-md-6 col-sm-12">

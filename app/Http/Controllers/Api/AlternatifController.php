@@ -57,7 +57,7 @@ class AlternatifController extends Controller
         $validator = $request->validate([
             'nama' => 'required|string',
             'keterangan' => 'required|string',
-            'matakuliah_id' => 'required',
+            'matapelajaran_id' => 'required',
         ]);
 
         $alternatif = Alternatif::create($input);
@@ -119,12 +119,12 @@ class AlternatifController extends Controller
         $validator = $request->validate([
             'nama' => 'required|string',
             'keterangan' => 'required|string',
-            'matakuliah_id' => 'required',
+            'matapelajaran_id' => 'required',
         ]);
 
         $alternatif->nama = $input['nama'];
         $alternatif->keterangan = $input['keterangan'];
-        $alternatif->matakuliah_id = $input['matakuliah_id'];
+        $alternatif->matapelajaran_id = $input['matapelajaran_id'];
         $alternatif->save();
 
         $response = [

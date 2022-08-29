@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\KriteriaController;
 use App\Http\Controllers\Api\AlternatifController;
-use App\Http\Controllers\Api\MatakuliahController;
+use App\Http\Controllers\Api\MatapelajaranController;
 use App\Http\Controllers\Api\EvaluationController;
 use App\Http\Controllers\Api\ApiUtilityController;
 
@@ -41,6 +41,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('user', UserController::class);
     Route::resource('kriteria', KriteriaController::class)->parameters(['kriteria' => 'kriteria']);
     Route::resource('alternatif', AlternatifController::class);
-    Route::resource('matakuliah', MatakuliahController::class);
+    Route::resource('matapelajaran', MatapelajaranController::class);
     Route::resource('evaluation', EvaluationController::class);
 });

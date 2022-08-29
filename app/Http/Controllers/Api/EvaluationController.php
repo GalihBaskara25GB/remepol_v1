@@ -22,7 +22,7 @@ class EvaluationController extends Controller
     public function index(Request $request)
     {
         $allowedFilters = [
-            'matakuliah_id'
+            'matapelajaran_id'
         ];
         $alternatifs = [];
         $evaluations = [];
@@ -92,11 +92,11 @@ class EvaluationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($matakuliah_id)
+    public function show($matapelajaran_id)
     {
         //-- inisialisasi variabel array alternatif
         $alternatif = array();
-        $alternatifs = Alternatif::where('matakuliah_id', '=', $matakuliah_id)->get();
+        $alternatifs = Alternatif::where('matapelajaran_id', '=', $matapelajaran_id)->get();
         foreach ($alternatifs as $key) {
             $alternatif[$key->id] = $key->nama;
         }
@@ -119,8 +119,8 @@ class EvaluationController extends Controller
         $min_j=array();
         $max_j=array();
         //-- ambil nilai dari tabel
-        $evaluations = Evaluation::whereHas('alternatif', function($q) use ($matakuliah_id) {
-            $q->where('matakuliah_id', '=', $matakuliah_id);
+        $evaluations = Evaluation::whereHas('alternatif', function($q) use ($matapelajaran_id) {
+            $q->where('matapelajaran_id', '=', $matapelajaran_id);
         })->get();
         foreach ($evaluations as $key) {
             $j = $key->kriteria_id;

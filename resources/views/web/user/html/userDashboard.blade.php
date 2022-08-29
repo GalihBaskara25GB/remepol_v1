@@ -73,8 +73,8 @@
           <div class="row">
             <div class="col-8">
               <div class="numbers">
-                <p class="text-sm mb-0 text-capitalize font-weight-bold">Mata Kuliah</p>
-                <h5 class="font-weight-bolder mb-0" id="num[matakuliahs]">
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">Mata Pelajaran</p>
+                <h5 class="font-weight-bolder mb-0" id="num[matapelajarans]">
                   0
                   <span class="text-success text-sm font-weight-bolder">active</span>
                 </h5>

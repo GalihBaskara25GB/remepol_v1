@@ -17,12 +17,12 @@ class Alternatif extends Model
     protected $fillable = [
         'nama',
         'keterangan',
-        'matakuliah_id',
+        'matapelajaran_id',
     ];
 
-    public function matakuliah()
+    public function matapelajaran()
     {
-        return $this->belongsTo('App\Models\Matakuliah');
+        return $this->belongsTo('App\Models\Matapelajaran');
     }
 
     public function evaluations()

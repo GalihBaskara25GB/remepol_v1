@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Matakuliah;
+use App\Models\Matapelajaran;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\MatakuliahResource;
+use App\Http\Resources\MatapelajaranResource;
 use App\Http\Resources\PaginationResource;
 use Validator;
 
-class MatakuliahController extends Controller
+class MatapelajaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,26 +21,26 @@ class MatakuliahController extends Controller
         $perPage = 15;
         $allowedFilters = [
             'nama',
-            'dosen'
+            'guru'
         ];
         if($request->has('filterBy') 
             && $request->has('filterValue') 
             && in_array($request->query('filterBy'), $allowedFilters)) {
                 
-            $matakuliahs = Matakuliah::where($request->query('filterBy'), 'LIKE', '%'.$request->query('filterValue').'%')->paginate($perPage);
-            $matakuliahs->appends([
+            $matapelajarans = Matapelajaran::where($request->query('filterBy'), 'LIKE', '%'.$request->query('filterValue').'%')->paginate($perPage);
+            $matapelajarans->appends([
                 'filterBy' => $request->query('filterBy'),
                 'filterValue' => $request->query('filterValue')
             ]);
-            $matakuliahs->withPath(url()->current().'?filterBy='.$request->query('filterBy').'&filterValue='.$request->query('filterValue'));
+            $matapelajarans->withPath(url()->current().'?filterBy='.$request->query('filterBy').'&filterValue='.$request->query('filterValue'));
         } else {
-            $matakuliahs = Matakuliah::paginate($perPage);
+            $matapelajarans = Matapelajaran::paginate($perPage);
         }
     
         return response([
-            'data' => MatakuliahResource::collection($matakuliahs),
-            'pagination' => new PaginationResource($matakuliahs),
-            'message' => 'Matakuliahs retrieved successfully'
+            'data' => MatapelajaranResource::collection($matapelajarans),
+            'pagination' => new PaginationResource($matapelajarans),
+            'message' => 'Matapelajarans retrieved successfully'
         ], 200);
     }
     /**
@@ -55,16 +55,16 @@ class MatakuliahController extends Controller
         
         $validator = $request->validate([
             'nama' => 'required|string',
-            'dosen' => 'required|string',
+            'guru' => 'required|string',
             'semester' => 'required|numeric',
             'keterangan' => 'required|string'
         ]);
 
-        $matakuliah = Matakuliah::create($input);
+        $matapelajaran = Matapelajaran::create($input);
 
         $response = [
-            'data' => new MatakuliahResource($matakuliah),
-            'message' => 'Matakuliah created successfully'
+            'data' => new MatapelajaranResource($matapelajaran),
+            'message' => 'Matapelajaran created successfully'
         ];
 
         return response($response, 201);
@@ -78,16 +78,16 @@ class MatakuliahController extends Controller
      */
     public function show($id)
     {
-        $matakuliah = Matakuliah::find($id);
+        $matapelajaran = Matapelajaran::find($id);
   
-        if (is_null($matakuliah)) {
+        if (is_null($matapelajaran)) {
             return response([
-                'message' => 'Matakuliah not found'
+                'message' => 'Matapelajaran not found'
             ], 404);
         }
    
         return response([
-            'data' => new MatakuliahResource($matakuliah)
+            'data' => new MatapelajaranResource($matapelajaran)
         ], 200);
     }
     
@@ -98,26 +98,26 @@ class MatakuliahController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Matakuliah $matakuliah)
+    public function update(Request $request, Matapelajaran $matapelajaran)
     {
         $input = $request->all();
    
         $validator = $request->validate([
             'nama' => 'required|string',
-            'dosen' => 'required|string',
+            'guru' => 'required|string',
             'semester' => 'required|numeric',
             'keterangan' => 'required|string'
         ]);
 
-        $matakuliah->nama = $input['nama'];
-        $matakuliah->dosen = $input['dosen'];
-        $matakuliah->semester = $input['semester'];
-        $matakuliah->keterangan = $input['keterangan'];
-        $matakuliah->save();
+        $matapelajaran->nama = $input['nama'];
+        $matapelajaran->guru = $input['guru'];
+        $matapelajaran->semester = $input['semester'];
+        $matapelajaran->keterangan = $input['keterangan'];
+        $matapelajaran->save();
 
         $response = [
-            'data' => new MatakuliahResource($matakuliah),
-            'message' => 'Matakuliah updated successfully'
+            'data' => new MatapelajaranResource($matapelajaran),
+            'message' => 'Matapelajaran updated successfully'
         ];
 
         return response($response, 200);
@@ -129,12 +129,12 @@ class MatakuliahController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Matakuliah $matakuliah)
+    public function destroy(Matapelajaran $matapelajaran)
     {
-        $matakuliah->delete();
+        $matapelajaran->delete();
    
         return response([
-            'message' => 'Matakuliah deleted successfully'
+            'message' => 'Matapelajaran deleted successfully'
         ], 200);
     }
 }

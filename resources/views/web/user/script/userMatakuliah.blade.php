@@ -1,16 +1,16 @@
 //check if token is valid before continue action 
 isTokenValid('user');
-let apiUrlMatakuliah = `${apiUrl}matakuliah`;
+let apiUrlMatapelajaran = `${apiUrl}matapelajaran`;
 
-let nextPageUrl = apiUrlMatakuliah;
-let prevPageUrl = apiUrlMatakuliah;
-let firstPageUrl = apiUrlMatakuliah;
-let lastPageUrl = apiUrlMatakuliah;
+let nextPageUrl = apiUrlMatapelajaran;
+let prevPageUrl = apiUrlMatapelajaran;
+let firstPageUrl = apiUrlMatapelajaran;
+let lastPageUrl = apiUrlMatapelajaran;
 
-const initMatakuliah = (url) => {
+const initMatapelajaran = (url) => {
   showLoader();
 
-  let failedRedirectUrl = `${webUrl}matakuliah`;
+  let failedRedirectUrl = `${webUrl}matapelajaran`;
 
   if(!userData) {
     removeLocalStorage(localStorageAuthKey);
@@ -27,10 +27,10 @@ const initMatakuliah = (url) => {
     contentType: "application/json",
     success: function(res){ 
       if(res.data) {
-        $(`#tbodyMatakuliah`).html('');
+        $(`#tbodyMatapelajaran`).html('');
         
         $.each(res.data, function (index, value) {
-          $(`#tbodyMatakuliah`).append(`
+          $(`#tbodyMatapelajaran`).append(`
             <tr>
               <td>
                 <div class="d-flex px-2 py-1">
@@ -43,7 +43,7 @@ const initMatakuliah = (url) => {
                 ${value.semester}
               </td>
               <td class="text-sm">
-                ${value.dosen}
+                ${value.guru}
               </td>
               <td class="text-sm">
                 ${value.keterangan}
@@ -111,30 +111,30 @@ const initPagination = (paginationData, numCurrentData) => {
 };
 
 
-initMatakuliah(apiUrlMatakuliah);
+initMatapelajaran(apiUrlMatapelajaran);
 
 //Pagination init
 $('#paginationPrev').on('click', function(e) {
   e.preventDefault();
 
-  initMatakuliah(prevPageUrl);
+  initMatapelajaran(prevPageUrl);
 });
 
 $('#paginationNext').on('click', function(e) {
   e.preventDefault();
 
-  initMatakuliah(nextPageUrl);
+  initMatapelajaran(nextPageUrl);
 });
 
 $('#paginationFirst').on('click', function(e) {
   e.preventDefault();
 
-  initMatakuliah(firstPageUrl);
+  initMatapelajaran(firstPageUrl);
 });
 
 $('#paginationLast').on('click', function(e) {
   e.preventDefault();
 
-  initMatakuliah(lastPageUrl);
+  initMatapelajaran(lastPageUrl);
 });
 

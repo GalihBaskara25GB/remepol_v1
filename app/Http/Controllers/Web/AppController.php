@@ -40,12 +40,12 @@ class AppController extends Controller
         $this->links = array(
             'dashboard' => route('web.dashboard'),
             'user' => route('web.user'),
-            'matakuliah' => route('web.matakuliah'),
+            'matapelajaran' => route('web.matapelajaran'),
             'kriteria' => route('web.kriteria'),
             'alternatif' => route('web.alternatif'),
             'evaluation' => route('web.evaluation'),
             'login' => route('web.login'),
-            'userMatakuliah' => route('web.user.matakuliah'),
+            'userMatapelajaran' => route('web.user.matapelajaran'),
             'userDashboard' => route('web.user.dashboard'),
         );
     }
@@ -60,8 +60,8 @@ class AppController extends Controller
         return $this->renderView('user', 'admin');
     }
 
-    public function matakuliah() {
-        return $this->renderView('matakuliah', 'admin');
+    public function matapelajaran() {
+        return $this->renderView('matapelajaran', 'admin');
     }
 
     public function kriteria() {
@@ -80,8 +80,8 @@ class AppController extends Controller
         return $this->renderView('login', 'public');
     }
 
-    public function userMatakuliah() {
-        return $this->renderView('userMatakuliah', 'user');
+    public function userMatapelajaran() {
+        return $this->renderView('userMatapelajaran', 'user');
     }
 
     public function userDashboard() {

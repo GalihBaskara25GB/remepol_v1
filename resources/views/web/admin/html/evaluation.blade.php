@@ -17,8 +17,8 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label for="matakuliah_id" class="form-control-label">Mata Kuliah</label>
-                    <select class="form-control" id="matakuliah_id" name="matakuliah_id" required>
+                    <label for="matapelajaran_id" class="form-control-label">Mata Pelajaran</label>
+                    <select class="form-control" id="matapelajaran_id" name="matapelajaran_id" required>
                       <option value="">Choose Option</option>
                     </select>
                   </div>
@@ -67,7 +67,7 @@
         <div class="card-header pb-0">
           <div class="row">
             <div class="col-lg-6 col-sm-12 col-md-7">
-              <h6 id="cardResultTitle">SAW Result of Mata Kuliah</h6>
+              <h6 id="cardResultTitle">SAW Result of Mata Pelajaran</h6>
               <p class="text-sm mb-0 d-none d-md-block">
                 <i class="fa fa-check text-info" aria-hidden="true"></i>
                 <span class="font-weight-bold ms-1">Showing</span> process result

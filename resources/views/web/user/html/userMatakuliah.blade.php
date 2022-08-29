@@ -7,7 +7,7 @@
         <div class="card-header pb-0">
           <div class="row">
             <div class="col-lg-6 col-sm-12 col-md-7">
-              <h6>Mata Kuliah</h6>
+              <h6>Mata Pelajaran</h6>
               <p class="text-sm mb-0 d-none d-md-block">
                 <i class="fa fa-check text-info" aria-hidden="true"></i>
                 <span class="font-weight-bold ms-1">Showing</span> data stored in database
@@ -56,11 +56,11 @@
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Semester</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Dosen</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Guru</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Keterangan</th>
                 </tr>
               </thead>
-              <tbody  id="tbodyMatakuliah">
+              <tbody  id="tbodyMatapelajaran">
               </tbody>
             </table>
           </div>

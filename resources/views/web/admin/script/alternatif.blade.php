@@ -1,7 +1,7 @@
 //check if token is valid before continue action 
 isTokenValid();
 let apiUrlAlternatif = `${apiUrl}alternatif`;
-let apiUrlMatakuliah = `${apiUrl}matakuliah`;
+let apiUrlMatapelajaran = `${apiUrl}matapelajaran`;
 
 let alternatifForm = $(`#alternatifForm`);
 let formTitle = $(`#cardFormTitle`);
@@ -9,7 +9,7 @@ let containerForm = $(`#formContainer`);
 let containerTable = $(`#tableContainer`);
 let isUpdate = false;
 let updateId = undefined;
-let selectMatakuliah = $(`#matakuliah_id`);
+let selectMatapelajaran = $(`#matapelajaran_id`);
 
 let nextPageUrl = apiUrlAlternatif;
 let prevPageUrl = apiUrlAlternatif;
@@ -53,7 +53,7 @@ const initAlternatif = (url) => {
                 </div>
               </td>
               <td class="text-sm text-capitalize">
-                ${value.matakuliah_nama}
+                ${value.matapelajaran_nama}
               </td>
               <td class="text-sm">
                 ${value.keterangan}
@@ -84,23 +84,23 @@ const initAlternatif = (url) => {
   });
 };
 
-const initSelectMatakuliah = () => {
+const initSelectMatapelajaran = () => {
 
   $.ajax({
     type: "GET",  
-    url: apiUrlMatakuliah,
+    url: apiUrlMatapelajaran,
     beforeSend: function (xhr) {
       xhr.setRequestHeader('Authorization', `Bearer ${userData.token}`);
     },
     contentType: "application/json",
     success: function(res){ 
       if(res.data) {
-        selectMatakuliah.html(`
+        selectMatapelajaran.html(`
          <option value="">Choose Option</option>
         `);
         
         $.each(res.data, function (index, value) {
-          selectMatakuliah.append(`
+          selectMatapelajaran.append(`
             <option value="${value.id}" class="text-capitalize">${value.nama}</option>
           `);
         });
@@ -272,7 +272,7 @@ const showTable = () => {
 
 
 initAlternatif(apiUrlAlternatif);
-initSelectMatakuliah();
+initSelectMatapelajaran();
 
 //Pagination init
 $('#paginationPrev').on('click', function(e) {
@@ -311,7 +311,7 @@ $('#btnAddData').on('click', function(e) {
 const fillForm = (data) => {
   $('#nama').val(data.nama);
   $('#keterangan').val(data.keterangan);
-  $('#matakuliah_id').val(data.matakuliah_id).trigger('change');
+  $('#matapelajaran_id').val(data.matapelajaran_id).trigger('change');
 };
 
 alternatifForm.on('submit', function(e) {

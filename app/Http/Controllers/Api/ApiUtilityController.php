@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Alternatif;
 use App\Models\User;
-use App\Models\Matakuliah;
+use App\Models\Matapelajaran;
 use App\Models\Kriteria;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -25,7 +25,7 @@ class ApiUtilityController extends Controller
           'users',
           'alternatifs',
           'kriterias',
-          'matakuliahs',
+          'matapelajarans',
         ];
         if ($request->has('table')) {
           if (in_array($request->query('table'), $allowedTables)) {
