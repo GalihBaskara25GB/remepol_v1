@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('alternatif_id')->constrained('alternatifs');
-            $table->foreignId('kriteria_id')->constrained('kriterias');
+            $table->foreignId('alternatif_id')->constrained('alternatifs')->onDelete('cascade');
+            $table->foreignId('kriteria_id')->constrained('kriterias')->onDelete('cascade');
             $table->float('value');
             $table->timestamps();
         });

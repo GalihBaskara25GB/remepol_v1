@@ -31,7 +31,7 @@ CREATE TABLE `alternatifs` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `alternatifs_matapelajaran_id_foreign` (`matapelajaran_id`),
-  CONSTRAINT `alternatifs_matapelajaran_id_foreign` FOREIGN KEY (`matapelajaran_id`) REFERENCES `matapelajarans` (`id`)
+  CONSTRAINT `alternatifs_matapelajaran_id_foreign` FOREIGN KEY (`matapelajaran_id`) REFERENCES `matapelajarans` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -62,8 +62,8 @@ CREATE TABLE `evaluations` (
   PRIMARY KEY (`id`),
   KEY `evaluations_alternatif_id_foreign` (`alternatif_id`),
   KEY `evaluations_kriteria_id_foreign` (`kriteria_id`),
-  CONSTRAINT `evaluations_alternatif_id_foreign` FOREIGN KEY (`alternatif_id`) REFERENCES `alternatifs` (`id`),
-  CONSTRAINT `evaluations_kriteria_id_foreign` FOREIGN KEY (`kriteria_id`) REFERENCES `kriterias` (`id`)
+  CONSTRAINT `evaluations_alternatif_id_foreign` FOREIGN KEY (`alternatif_id`) REFERENCES `alternatifs` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `evaluations_kriteria_id_foreign` FOREIGN KEY (`kriteria_id`) REFERENCES `kriterias` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
