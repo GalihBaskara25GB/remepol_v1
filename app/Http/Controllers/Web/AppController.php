@@ -46,6 +46,7 @@ class AppController extends Controller
             'evaluation' => route('web.evaluation'),
             'login' => route('web.login'),
             'userMatapelajaran' => route('web.user.matapelajaran'),
+            'userEvaluation' => route('web.user.evaluation'),
             'userDashboard' => route('web.user.dashboard'),
         );
     }
@@ -82,6 +83,10 @@ class AppController extends Controller
 
     public function userMatapelajaran() {
         return $this->renderView('userMatapelajaran', 'user');
+    }
+
+    public function userEvaluation() {
+        return $this->renderView('userEvaluation', 'user');
     }
 
     public function userDashboard() {

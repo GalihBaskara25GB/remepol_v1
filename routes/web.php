@@ -25,4 +25,5 @@ Route::get('/kriteria', [AppController::class, 'kriteria'])->name('web.kriteria'
 Route::get('/alternatif', [AppController::class, 'alternatif'])->name('web.alternatif');
 Route::get('/evaluation', [AppController::class, 'evaluation'])->name('web.evaluation');
 Route::get('/user/matapelajaran', [AppController::class, 'userMatapelajaran'])->name('web.user.matapelajaran');
+Route::get('/user/evaluation', [AppController::class, 'userEvaluation'])->name('web.user.evaluation');
 Route::get('/user/dashboard', [AppController::class, 'userDashboard'])->name('web.user.dashboard');
