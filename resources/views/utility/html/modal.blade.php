@@ -13,7 +13,7 @@
       <div class="modal-header" id="modalHeader">
         <h6 class="modal-title" id="modalTitle"></h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
+          <!-- <span aria-hidden="true">×</span> -->
         </button>
       </div>
       <div class="modal-body">

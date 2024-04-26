@@ -14,8 +14,16 @@ let prevPageUrl = apiUrlKriteria;
 let firstPageUrl = apiUrlKriteria;
 let lastPageUrl = apiUrlKriteria;
 
-const initKriteria = (url) => {
-  showLoader();
+// search
+$(document).on('keyup', '#searchInput', function (e) {
+  var apiSearchUrl = `${apiUrlKriteria}?filterBy=nama&filterValue=${$(e.target).val()}`
+  
+  initKriteria(apiSearchUrl, false);
+});
+
+const initKriteria = (url, withLoader = true) => {
+  if (withLoader)
+    showLoader();
   hideForm(true);
   showTable();
 

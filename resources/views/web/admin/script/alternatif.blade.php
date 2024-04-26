@@ -16,8 +16,16 @@ let prevPageUrl = apiUrlAlternatif;
 let firstPageUrl = apiUrlAlternatif;
 let lastPageUrl = apiUrlAlternatif;
 
-const initAlternatif = (url) => {
-  showLoader();
+// search
+$(document).on('keyup', '#searchInput', function (e) {
+  var apiSearchUrl = `${apiUrlAlternatif}?filterBy=nama&filterValue=${$(e.target).val()}`
+  
+  initAlternatif(apiSearchUrl, false);
+});
+
+const initAlternatif = (url, withLoader = true) => {
+  if (withLoader)
+    showLoader();
   hideForm(true);
   showTable();
 

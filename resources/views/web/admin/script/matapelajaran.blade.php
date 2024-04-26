@@ -14,8 +14,16 @@ let prevPageUrl = apiUrlMatapelajaran;
 let firstPageUrl = apiUrlMatapelajaran;
 let lastPageUrl = apiUrlMatapelajaran;
 
-const initMatapelajaran = (url) => {
-  showLoader();
+// search
+$(document).on('keyup', '#searchInput', function (e) {
+  var apiSearchUrl = `${apiUrlMatapelajaran}?filterBy=nama&filterValue=${$(e.target).val()}`
+  
+  initMatapelajaran(apiSearchUrl, false);
+});
+
+const initMatapelajaran = (url, withLoader = true) => {
+  if (withLoader)
+    showLoader();
   hideForm(true);
   showTable();
 

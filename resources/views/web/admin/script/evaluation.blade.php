@@ -9,8 +9,16 @@ let selectMatapelajaran = $(`#matapelajaran_id`);
 let resultContainer = $('#resultContainer');
 let tableContainer = $('#tableContainer');
 
-const initEvaluation = (url) => {
-  showLoader();
+// search
+$(document).on('keyup', '#searchInput', function (e) {
+  var apiSearchUrl = `${apiUrlEvaluation}?filterBy=matapelajaran_id&filterValue=${$(e.target).val()}`
+  
+  initEvaluation(apiSearchUrl, false);
+});
+
+const initEvaluation = (url, withLoader = true) => {
+  if (withLoader)
+    showLoader();
 
   let failedRedirectUrl = `${webUrl}evaluation`;
 

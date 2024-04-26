@@ -14,8 +14,16 @@ let prevPageUrl = apiUrlUser;
 let firstPageUrl = apiUrlUser;
 let lastPageUrl = apiUrlUser;
 
-const initUser = (url) => {
-  showLoader();
+// search
+$(document).on('keyup', '#searchInput', function (e) {
+  var apiSearchUrl = `${apiUrlUser}?filterBy=name&filterValue=${$(e.target).val()}`
+  
+  initUser(apiSearchUrl, false);
+});
+
+const initUser = (url, withLoader = true) => {
+  if (withLoader)
+    showLoader();
   hideForm(true);
   showTable();
 
